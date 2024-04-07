@@ -107,6 +107,12 @@
             button15 = new Button();
             txt_UserID2 = new TextBox();
             label26 = new Label();
+            groupBox8 = new GroupBox();
+            txt_RoleID2 = new TextBox();
+            label28 = new Label();
+            button16 = new Button();
+            txt_UserID3 = new TextBox();
+            label27 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -115,6 +121,7 @@
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
             groupBox7.SuspendLayout();
+            groupBox8.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -412,7 +419,7 @@
             groupBox2.Controls.Add(button8);
             groupBox2.Controls.Add(txt_DepartmentName);
             groupBox2.Controls.Add(label20);
-            groupBox2.Location = new Point(275, 456);
+            groupBox2.Location = new Point(12, 796);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(257, 80);
             groupBox2.TabIndex = 23;
@@ -450,7 +457,7 @@
             groupBox3.Controls.Add(button9);
             groupBox3.Controls.Add(txt_RoleName);
             groupBox3.Controls.Add(label1);
-            groupBox3.Location = new Point(275, 542);
+            groupBox3.Location = new Point(12, 882);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(257, 80);
             groupBox3.TabIndex = 24;
@@ -508,7 +515,7 @@
             groupBox4.Controls.Add(label19);
             groupBox4.Controls.Add(label21);
             groupBox4.Controls.Add(label22);
-            groupBox4.Location = new Point(538, 456);
+            groupBox4.Location = new Point(275, 456);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(257, 361);
             groupBox4.TabIndex = 23;
@@ -706,7 +713,7 @@
             groupBox5.Controls.Add(button11);
             groupBox5.Controls.Add(txt_DepartmentID3);
             groupBox5.Controls.Add(label24);
-            groupBox5.Location = new Point(801, 542);
+            groupBox5.Location = new Point(538, 542);
             groupBox5.Name = "groupBox5";
             groupBox5.Size = new Size(257, 80);
             groupBox5.TabIndex = 24;
@@ -721,6 +728,7 @@
             button11.TabIndex = 22;
             button11.Text = "Remove";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // txt_DepartmentID3
             // 
@@ -743,7 +751,7 @@
             groupBox6.Controls.Add(button12);
             groupBox6.Controls.Add(txt_RoleID);
             groupBox6.Controls.Add(label25);
-            groupBox6.Location = new Point(801, 628);
+            groupBox6.Location = new Point(538, 628);
             groupBox6.Name = "groupBox6";
             groupBox6.Size = new Size(257, 80);
             groupBox6.TabIndex = 25;
@@ -758,6 +766,7 @@
             button12.TabIndex = 22;
             button12.Text = "Remove";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button12_Click;
             // 
             // txt_RoleID
             // 
@@ -807,7 +816,7 @@
             groupBox7.Controls.Add(button15);
             groupBox7.Controls.Add(txt_UserID2);
             groupBox7.Controls.Add(label26);
-            groupBox7.Location = new Point(801, 456);
+            groupBox7.Location = new Point(538, 456);
             groupBox7.Name = "groupBox7";
             groupBox7.Size = new Size(257, 80);
             groupBox7.TabIndex = 25;
@@ -822,6 +831,7 @@
             button15.TabIndex = 22;
             button15.Text = "Remove";
             button15.UseVisualStyleBackColor = true;
+            button15.Click += button15_Click;
             // 
             // txt_UserID2
             // 
@@ -839,11 +849,68 @@
             label26.TabIndex = 1;
             label26.Text = "UserID";
             // 
+            // groupBox8
+            // 
+            groupBox8.Controls.Add(txt_RoleID2);
+            groupBox8.Controls.Add(label28);
+            groupBox8.Controls.Add(button16);
+            groupBox8.Controls.Add(txt_UserID3);
+            groupBox8.Controls.Add(label27);
+            groupBox8.Location = new Point(275, 826);
+            groupBox8.Name = "groupBox8";
+            groupBox8.Size = new Size(257, 107);
+            groupBox8.TabIndex = 24;
+            groupBox8.TabStop = false;
+            groupBox8.Text = "Update UserRole";
+            // 
+            // txt_RoleID2
+            // 
+            txt_RoleID2.Location = new Point(117, 48);
+            txt_RoleID2.Name = "txt_RoleID2";
+            txt_RoleID2.Size = new Size(133, 23);
+            txt_RoleID2.TabIndex = 24;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(6, 56);
+            label28.Name = "label28";
+            label28.Size = new Size(41, 15);
+            label28.TabIndex = 23;
+            label28.Text = "RoleID";
+            // 
+            // button16
+            // 
+            button16.Location = new Point(117, 77);
+            button16.Name = "button16";
+            button16.Size = new Size(133, 23);
+            button16.TabIndex = 22;
+            button16.Text = "Update";
+            button16.UseVisualStyleBackColor = true;
+            button16.Click += button16_Click;
+            // 
+            // txt_UserID3
+            // 
+            txt_UserID3.Location = new Point(117, 22);
+            txt_UserID3.Name = "txt_UserID3";
+            txt_UserID3.Size = new Size(133, 23);
+            txt_UserID3.TabIndex = 12;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(6, 30);
+            label27.Name = "label27";
+            label27.Size = new Size(41, 15);
+            label27.TabIndex = 1;
+            label27.Text = "UserID";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1193, 1000);
+            ClientSize = new Size(1193, 974);
+            Controls.Add(groupBox8);
             Controls.Add(groupBox7);
             Controls.Add(button14);
             Controls.Add(textBox4);
@@ -881,6 +948,8 @@
             groupBox6.PerformLayout();
             groupBox7.ResumeLayout(false);
             groupBox7.PerformLayout();
+            groupBox8.ResumeLayout(false);
+            groupBox8.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -966,5 +1035,11 @@
         private Button button15;
         private TextBox txt_UserID2;
         private Label label26;
+        private GroupBox groupBox8;
+        private Button button16;
+        private TextBox txt_UserID3;
+        private Label label27;
+        private TextBox txt_RoleID2;
+        private Label label28;
     }
 }

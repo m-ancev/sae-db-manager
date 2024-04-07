@@ -152,5 +152,52 @@ namespace sae_db_manager
 
             dataGridView1.DataSource = userRolesBindingSource;
         }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            UserRole userRole = new UserRole
+            {
+                UserID = int.Parse(txt_UserID3.Text),
+                RoleID = int.Parse(txt_RoleID2.Text)
+            };
+
+            UserRoleDAO userRoleDAO = new UserRoleDAO();
+            int result = userRoleDAO.UpdateUserRole(userRole);
+            MessageBox.Show(result + " record(s) updated.");
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+
+            User user = new User
+            {
+                UserID = int.Parse(txt_UserID2.Text)
+            };
+            userDAO.DeleteUser(user);
+            MessageBox.Show("User deleted.");
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            DepartmentDAO departmentDAO = new DepartmentDAO();
+            Department department = new Department
+            {
+                DepartmentID = int.Parse(txt_DepartmentID3.Text)
+            };
+            departmentDAO.DeleteDepartment(department);
+            MessageBox.Show("Department deleted.");
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            RoleDAO roleDAO = new RoleDAO();
+            Role role = new Role
+            {
+                RoleID = int.Parse(txt_RoleID.Text)
+            };
+            roleDAO.DeleteRole(role);
+            MessageBox.Show("Role deleted.");
+        }
     }
 }

@@ -147,5 +147,24 @@ namespace sae_db_manager
 
             return int.Parse(userAffected);
         }
+
+        public int DeleteUser(User user)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.Connection = connection;
+
+            command.CommandText = "DELETE FROM users WHERE User_ID = @UserID";
+            command.Parameters.AddWithValue("@UserID", user.UserID);
+
+            string userAffected = command.ExecuteNonQuery().ToString();
+
+            connection.Close();
+
+            return int.Parse(userAffected);
+        }
     }
 }

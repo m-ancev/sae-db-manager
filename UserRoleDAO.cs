@@ -68,5 +68,23 @@ namespace sae_db_manager
 
             return returnUserRoles;
         }
+
+        public int UpdateUserRole(UserRole userRole)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "UPDATE user_roles SET Role_ID = @roleID WHERE User_ID = @userID";
+            command.Parameters.AddWithValue("@roleID", userRole.RoleID);
+            command.Parameters.AddWithValue("@userID", userRole.UserID);
+            command.Connection = connection;
+
+            int result = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return result;
+        }
     }
 }

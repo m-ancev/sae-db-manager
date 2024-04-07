@@ -86,5 +86,23 @@ namespace sae_db_manager
 
             return result;
         }
+
+        // delete role
+        public int DeleteRole(Role role)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "DELETE FROM roles WHERE Role_ID = @RoleID";
+            command.Parameters.AddWithValue("@RoleID", role.RoleID);
+            command.Connection = connection;
+
+            int result = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return result;
+        }
     }
 }

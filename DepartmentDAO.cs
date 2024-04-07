@@ -10,7 +10,6 @@ namespace sae_db_manager
     internal class DepartmentDAO
     {
         string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
-
         public List<Department> GetAllDepartments()
         {
             List<Department> returnDepartments = new List<Department>();
@@ -78,6 +77,23 @@ namespace sae_db_manager
             MySqlCommand command = new MySqlCommand();
             command.CommandText = "INSERT INTO departments (Department_Name) VALUES (@DepartmentName)";
             command.Parameters.AddWithValue("@DepartmentName", department.DepartmentName);
+            command.Connection = connection;
+
+            int result = command.ExecuteNonQuery();
+
+            connection.Close();
+
+            return result;
+        }
+
+        public int DeleteDepartment(Department department)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+            command.CommandText = "DELETE FROM departments WHERE Department_ID = @DepartmentID";
+            command.Parameters.AddWithValue("@DepartmentID", department.DepartmentID);
             command.Connection = connection;
 
             int result = command.ExecuteNonQuery();
