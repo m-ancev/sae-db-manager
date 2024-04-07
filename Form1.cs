@@ -5,6 +5,7 @@ namespace sae_db_manager
         BindingSource usersBindingSource = new BindingSource();
         BindingSource departmentsBindingSource = new BindingSource();
         BindingSource rolesBindingSource = new BindingSource();
+        BindingSource userRolesBindingSource = new BindingSource();
 
         public Form1()
         {
@@ -104,12 +105,52 @@ namespace sae_db_manager
             Role role = new Role
             {
                 RoleName = txt_RoleName.Text
-            }; 
+            };
 
             RoleDAO roleDAO = new RoleDAO();
 
             int result = roleDAO.AddRole(role);
             MessageBox.Show(result + " record(s) inserted.");
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            User user = new User
+            {
+                UserID = int.Parse(txt_UserID.Text),
+                UserName = txt_UserName2.Text,
+                Password = txt_Password2.Text,
+                FirstName = txt_FirstName2.Text,
+                LastName = txt_LastName2.Text,
+                Email = txt_Email2.Text,
+                Phone = txt_Phone2.Text,
+                Address = txt_Address2.Text,
+                BirthDate = DateTime.ParseExact(txt_BirthDate2.Text, "dd.MM.yyyy", null),
+                HireDate = DateTime.ParseExact(txt_HireDate2.Text, "dd.MM.yyyy", null),
+                DepartmentID = int.Parse(txt_DepartmentID2.Text)
+            };
+
+            UserDAO userDAO = new UserDAO();
+            int result = userDAO.UpdateUser(user);
+            MessageBox.Show(result + " record(s) updated.");
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            UserRoleDAO userRoleDAO = new UserRoleDAO();
+
+            userRolesBindingSource.DataSource = userRoleDAO.GetAllUserRoles();
+
+            dataGridView1.DataSource = userRolesBindingSource;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            UserRoleDAO userRoleDAO = new UserRoleDAO();
+
+            userRolesBindingSource.DataSource = userRoleDAO.GetAnyEntryFromUserRoles(textBox4.Text);
+
+            dataGridView1.DataSource = userRolesBindingSource;
         }
     }
 }

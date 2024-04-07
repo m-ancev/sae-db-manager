@@ -117,5 +117,35 @@ namespace sae_db_manager
 
             return rowsAffected;
         }
+
+        public int UpdateUser(User user)
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.Connection = connection;
+
+            command.CommandText = "UPDATE users SET UserName = @UserName, Password = @Password, First_Name = @FirstName, Last_Name = @LastName, Email = @Email, Phone = @Phone, Address = @Address, Birth_Date = @BirthDate, Hire_Date = @HireDate, Department_ID = @DepartmentID WHERE User_ID = @UserID";
+            command.Parameters.AddWithValue("@UserName", user.UserName);
+            command.Parameters.AddWithValue("@Password", user.Password);
+            command.Parameters.AddWithValue("@FirstName", user.FirstName);
+            command.Parameters.AddWithValue("@LastName", user.LastName);
+            command.Parameters.AddWithValue("@Email", user.Email);
+            command.Parameters.AddWithValue("@Phone", user.Phone);
+            command.Parameters.AddWithValue("@Address", user.Address);
+            command.Parameters.AddWithValue("@BirthDate", user.BirthDate);
+            command.Parameters.AddWithValue("@HireDate", user.HireDate);
+            command.Parameters.AddWithValue("@DepartmentID", user.DepartmentID);
+
+            command.Parameters.AddWithValue("@UserID", user.UserID);
+
+            string userAffected = command.ExecuteNonQuery().ToString();
+
+            connection.Close();
+
+            return int.Parse(userAffected);
+        }
     }
 }
