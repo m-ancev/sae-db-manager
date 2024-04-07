@@ -11,7 +11,7 @@ namespace sae_db_manager
     {
         //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         public string ConnectionString { get; set; }
-        public List<Department> GetAllDepartments()
+        public List<Department> GetAllDepartments(bool export)
         {
             List<Department> returnDepartments = new List<Department>();
 
@@ -37,7 +37,7 @@ namespace sae_db_manager
             return returnDepartments;
         }
 
-        public List<Department> GetAnyEntryFromDepartments(String searchQuery)
+        public List<Department> GetAnyEntryFromDepartments(String searchQuery, bool export)
         {
             List<Department> returnDepartments = new List<Department>();
 

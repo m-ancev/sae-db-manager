@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Linq;
+
 namespace sae_db_manager
 {
     public partial class Form1 : Form
@@ -227,8 +229,85 @@ namespace sae_db_manager
             string database = txtDatabase.Text;
 
             DatabaseConnector databaseConnector = new DatabaseConnector();
-            
+
             connectionString = databaseConnector.BuildConnectionString(datasource, port, username, password, database);
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
+
+            usersBindingSource.DataSource = userDAO.GetAllUsersAndDepartmentName(false);
+
+            dataGridView1.DataSource = usersBindingSource;
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
+
+            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsersAndDepartmentName(textBox5.Text);
+            dataGridView1.DataSource = usersBindingSource;
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
+
+            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsersAndRoleName(textBox6.Text);
+            dataGridView1.DataSource = usersBindingSource;
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
+
+            usersBindingSource.DataSource = userDAO.GetAllUsersAndRoleName();
+            dataGridView1.DataSource = usersBindingSource;
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
+
+            usersBindingSource.DataSource = userDAO.GetAllUsers(true);
+
+            dataGridView1.DataSource = usersBindingSource;
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
+
+            usersBindingSource.DataSource = userDAO.GetAllUsersAndDepartmentName(true);
+
+            dataGridView1.DataSource = usersBindingSource;
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace sae_db_manager
         //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         public string ConnectionString { get; set; }
 
-        public List<Role> GetAllRoles()
+        public List<Role> GetAllRoles(bool export)
         {
             List<Role> returnRoles = new List<Role>();
 
@@ -39,7 +39,7 @@ namespace sae_db_manager
             return returnRoles;
         }
 
-        public List<Role> GetAnyEntryFromRoles(String searchQuery)
+        public List<Role> GetAnyEntryFromRoles(String searchQuery, bool export)
         {
             List<Role> returnRoles = new List<Role>();
 
@@ -88,7 +88,6 @@ namespace sae_db_manager
             return result;
         }
 
-        // delete role
         public int DeleteRole(Role role)
         {
             MySqlConnection connection = new MySqlConnection(ConnectionString);

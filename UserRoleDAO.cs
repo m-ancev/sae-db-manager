@@ -1,4 +1,6 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,8 @@ namespace sae_db_manager
         //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         public string ConnectionString { get; set; }
 
-        public List<UserRole> GetAllUserRoles()
+
+        public List<UserRole> GetAllUserRoles(bool export)
         {
             List<UserRole> returnUserRoles = new List<UserRole>();
 
@@ -38,7 +41,7 @@ namespace sae_db_manager
             return returnUserRoles;
         }
 
-        public List<UserRole> GetAnyEntryFromUserRoles(String searchQuery)
+        public List<UserRole> GetAnyEntryFromUserRoles(String searchQuery, bool export)
         {
             List<UserRole> returnUserRoles = new List<UserRole>();
 

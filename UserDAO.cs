@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace sae_db_manager
@@ -12,7 +14,8 @@ namespace sae_db_manager
         //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         public string ConnectionString { get; set; }
 
-        public List<User> GetAllUsers()
+
+        public List<User> GetAllUsers(bool export)
         {
             List<User> returnUsers = new List<User>();
 
@@ -48,7 +51,7 @@ namespace sae_db_manager
             return returnUsers;
         }
 
-        public List<User> GetAnyEntryFromUsers(String searchQuery)
+        public List<User> GetAnyEntryFromUsers(String searchQuery, bool export)
         {
             List<User> returnUsers = new List<User>();
 
@@ -82,6 +85,146 @@ namespace sae_db_manager
                         HireDate = reader.GetDateTime(9),
                         DepartmentID = reader.GetInt32(10)
                     };
+                    returnUsers.Add(user);
+                }
+            }
+            connection.Close();
+
+            return returnUsers;
+        }
+
+        public List<JObject> GetAllUsersAndDepartmentName(bool export)
+        {
+            List<JObject> returnUsers = new List<JObject>();
+
+
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand("SELECT `username`, `first_name`, `last_name`, departments.department_name FROM `users` JOIN departments ON users.department_id = departments.department_id", connection);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnUsers.Add(user);
+                }
+            }
+            connection.Close();
+
+            if (exportBool == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\users.json", json);
+
+                MessageBox.Show("Users have been saved to users.json");
+            }
+
+            return returnUsers;
+        }
+
+        public List<JObject> GetAnyEntryFromUsersAndDepartmentName(String searchQuery, bool export)
+        {
+            List<JObject> returnUsers = new List<JObject>();
+
+
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            String searchFuzzyQuery = "%" + searchQuery + "%";
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT `username`, `first_name`, `last_name`, departments.department_name FROM `users` JOIN departments ON users.department_id WHERE UserName LIKE @search OR First_Name LIKE @search or Last_Name LIKE @search OR departments.department_name LIKE @search";
+            command.Parameters.AddWithValue("@search", searchFuzzyQuery);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnUsers.Add(user);
+                }
+            }
+            connection.Close();
+
+            return returnUsers;
+        }
+
+        // get all users and role names
+        public List<JObject> GetAllUsersAndRoleName(bool export)
+        {
+            List<JObject> returnUsers = new List<JObject>();
+
+
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            MySqlCommand command = new MySqlCommand("SELECT `username`, `first_name`, `last_name`, roles.role_name FROM `users` JOIN roles ON users.user_id = roles.role_id", connection);
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnUsers.Add(user);
+                }
+            }
+            connection.Close();
+
+            return returnUsers;
+        }
+
+        public List<JObject> GetAnyEntryFromUsersAndRoleName(String searchQuery, bool export)
+        {
+            List<JObject> returnUsers = new List<JObject>();
+
+
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+
+            String searchFuzzyQuery = "%" + searchQuery + "%";
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.CommandText = "SELECT `username`, `first_name`, `last_name`, roles.role_name FROM `users` JOIN roles ON users.user_id = roles.role_id WHERE UserName LIKE @search OR First_Name LIKE @search or Last_Name LIKE @search OR roles.role_name LIKE @search";
+            command.Parameters.AddWithValue("@search", searchFuzzyQuery);
+            command.Connection = connection;
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
                     returnUsers.Add(user);
                 }
             }
