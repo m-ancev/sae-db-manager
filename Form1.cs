@@ -292,22 +292,42 @@ namespace sae_db_manager
 
         private void button23_Click(object sender, EventArgs e)
         {
+            DepartmentDAO departmentDAO = new DepartmentDAO();
+            departmentDAO.ConnectionString = connectionString;
 
+            departmentsBindingSource.DataSource = departmentDAO.GetAllDepartments(true);
+
+            dataGridView1.DataSource = departmentsBindingSource;
         }
 
         private void button25_Click(object sender, EventArgs e)
         {
+            RoleDAO roleDAO = new RoleDAO();
+            roleDAO.ConnectionString = connectionString;
 
+            rolesBindingSource.DataSource = roleDAO.GetAllRoles(true);
+
+            dataGridView1.DataSource = rolesBindingSource;
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
+            UserRoleDAO userRoleDAO = new UserRoleDAO();
+            userRoleDAO.ConnectionString = connectionString;
 
+            userRolesBindingSource.DataSource = userRoleDAO.GetAllUserRoles(true);
+
+            dataGridView1.DataSource = userRolesBindingSource;
         }
 
         private void button26_Click(object sender, EventArgs e)
         {
+            UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
 
+            usersBindingSource.DataSource = userDAO.GetAllUsersAndRoleName(true);
+
+            dataGridView1.DataSource = usersBindingSource;
         }
     }
 }

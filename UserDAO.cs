@@ -162,7 +162,7 @@ namespace sae_db_manager
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT `username`, `first_name`, `last_name`, departments.department_name FROM `users` JOIN departments ON users.department_id WHERE UserName LIKE @search OR First_Name LIKE @search or Last_Name LIKE @search OR departments.department_name LIKE @search";
+            command.CommandText = "SELECT `username`, `first_name`, `last_name`, departments.department_name FROM `users` JOIN departments ON users.department_id = departments.department_id WHERE UserName LIKE @search OR First_Name LIKE @search or Last_Name LIKE @search OR departments.department_name LIKE @search";
             command.Parameters.AddWithValue("@search", searchFuzzyQuery);
             command.Connection = connection;
 
