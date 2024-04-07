@@ -21,7 +21,7 @@ namespace sae_db_manager
             UserDAO userDAO = new UserDAO();
             userDAO.ConnectionString = connectionString;
 
-            usersBindingSource.DataSource = userDAO.GetAllUsers();
+            usersBindingSource.DataSource = userDAO.GetAllUsers(false);
 
             dataGridView1.DataSource = usersBindingSource;
         }
@@ -31,7 +31,7 @@ namespace sae_db_manager
             UserDAO userDAO = new UserDAO();
             userDAO.ConnectionString = connectionString;
 
-            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsers(textBox1.Text);
+            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsers(textBox1.Text, false);
 
             dataGridView1.DataSource = usersBindingSource;
         }
@@ -63,7 +63,7 @@ namespace sae_db_manager
             DepartmentDAO departmentDAO = new DepartmentDAO();
             departmentDAO.ConnectionString = connectionString;
 
-            departmentsBindingSource.DataSource = departmentDAO.GetAllDepartments();
+            departmentsBindingSource.DataSource = departmentDAO.GetAllDepartments(false);
 
             dataGridView1.DataSource = departmentsBindingSource;
         }
@@ -73,7 +73,7 @@ namespace sae_db_manager
             RoleDAO roleDAO = new RoleDAO();
             roleDAO.ConnectionString = connectionString;
 
-            rolesBindingSource.DataSource = roleDAO.GetAllRoles();
+            rolesBindingSource.DataSource = roleDAO.GetAllRoles(false);
 
             dataGridView1.DataSource = rolesBindingSource;
         }
@@ -83,7 +83,7 @@ namespace sae_db_manager
             DepartmentDAO departmentDAO = new DepartmentDAO();
             departmentDAO.ConnectionString = connectionString;
 
-            departmentsBindingSource.DataSource = departmentDAO.GetAnyEntryFromDepartments(textBox2.Text);
+            departmentsBindingSource.DataSource = departmentDAO.GetAnyEntryFromDepartments(textBox2.Text, false);
 
             dataGridView1.DataSource = departmentsBindingSource;
         }
@@ -93,7 +93,7 @@ namespace sae_db_manager
             RoleDAO roleDAO = new RoleDAO();
             roleDAO.ConnectionString = connectionString;
 
-            rolesBindingSource.DataSource = roleDAO.GetAnyEntryFromRoles(textBox3.Text);
+            rolesBindingSource.DataSource = roleDAO.GetAnyEntryFromRoles(textBox3.Text, false);
 
             dataGridView1.DataSource = rolesBindingSource;
         }
@@ -154,7 +154,7 @@ namespace sae_db_manager
             UserRoleDAO userRoleDAO = new UserRoleDAO();
             userRoleDAO.ConnectionString = connectionString;
 
-            userRolesBindingSource.DataSource = userRoleDAO.GetAllUserRoles();
+            userRolesBindingSource.DataSource = userRoleDAO.GetAllUserRoles(false);
 
             dataGridView1.DataSource = userRolesBindingSource;
         }
@@ -164,7 +164,7 @@ namespace sae_db_manager
             UserRoleDAO userRoleDAO = new UserRoleDAO();
             userRoleDAO.ConnectionString = connectionString;
 
-            userRolesBindingSource.DataSource = userRoleDAO.GetAnyEntryFromUserRoles(textBox4.Text);
+            userRolesBindingSource.DataSource = userRoleDAO.GetAnyEntryFromUserRoles(textBox4.Text, false);
 
             dataGridView1.DataSource = userRolesBindingSource;
         }
@@ -248,7 +248,7 @@ namespace sae_db_manager
             UserDAO userDAO = new UserDAO();
             userDAO.ConnectionString = connectionString;
 
-            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsersAndDepartmentName(textBox5.Text);
+            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsersAndDepartmentName(textBox5.Text, false);
             dataGridView1.DataSource = usersBindingSource;
         }
 
@@ -257,7 +257,7 @@ namespace sae_db_manager
             UserDAO userDAO = new UserDAO();
             userDAO.ConnectionString = connectionString;
 
-            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsersAndRoleName(textBox6.Text);
+            usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsersAndRoleName(textBox6.Text, false);
             dataGridView1.DataSource = usersBindingSource;
         }
 
@@ -266,7 +266,7 @@ namespace sae_db_manager
             UserDAO userDAO = new UserDAO();
             userDAO.ConnectionString = connectionString;
 
-            usersBindingSource.DataSource = userDAO.GetAllUsersAndRoleName();
+            usersBindingSource.DataSource = userDAO.GetAllUsersAndRoleName(false);
             dataGridView1.DataSource = usersBindingSource;
         }
 

@@ -15,9 +15,9 @@ namespace sae_db_manager
         public string ConnectionString { get; set; }
 
 
-        public List<User> GetAllUsers(bool export)
+        public List<JObject> GetAllUsers(bool export)
         {
-            List<User> returnUsers = new List<User>();
+            List<JObject> returnUsers = new List<JObject>();
 
 
             MySqlConnection connection = new MySqlConnection(ConnectionString);
@@ -29,31 +29,38 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    User user = new User
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        UserID = reader.GetInt32(0),
-                        UserName = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        FirstName = reader.GetString(3),
-                        LastName = reader.GetString(4),
-                        Email = reader.GetString(5),
-                        Phone = reader.GetString(6),
-                        Address = reader.GetString(7),
-                        BirthDate = reader.GetDateTime(8),
-                        HireDate = reader.GetDateTime(9),
-                        DepartmentID = reader.GetInt32(10)
-                    };
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
                     returnUsers.Add(user);
                 }
             }
             connection.Close();
 
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\all_users.json", json);
+
+                MessageBox.Show("Users have been saved to all_users.json");
+            }
+
             return returnUsers;
         }
 
-        public List<User> GetAnyEntryFromUsers(String searchQuery, bool export)
+        public List<JObject> GetAnyEntryFromUsers(String searchQuery, bool export)
         {
-            List<User> returnUsers = new List<User>();
+            List<JObject> returnUsers = new List<JObject>();
 
 
             MySqlConnection connection = new MySqlConnection(ConnectionString);
@@ -71,24 +78,31 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    User user = new User
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        UserID = reader.GetInt32(0),
-                        UserName = reader.GetString(1),
-                        Password = reader.GetString(2),
-                        FirstName = reader.GetString(3),
-                        LastName = reader.GetString(4),
-                        Email = reader.GetString(5),
-                        Phone = reader.GetString(6),
-                        Address = reader.GetString(7),
-                        BirthDate = reader.GetDateTime(8),
-                        HireDate = reader.GetDateTime(9),
-                        DepartmentID = reader.GetInt32(10)
-                    };
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
                     returnUsers.Add(user);
                 }
             }
             connection.Close();
+
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\search_users.json", json);
+
+                MessageBox.Show("Users have been saved to search_users.json");
+            }
 
             return returnUsers;
         }
@@ -118,7 +132,7 @@ namespace sae_db_manager
             }
             connection.Close();
 
-            if (exportBool == true)
+            if (export == true)
             {
                 string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
 
@@ -128,9 +142,9 @@ namespace sae_db_manager
                     System.IO.Directory.CreateDirectory(directory);
                 }
 
-                System.IO.File.WriteAllText(directory + @"\users.json", json);
+                System.IO.File.WriteAllText(directory + @"\all_users_departments.json", json);
 
-                MessageBox.Show("Users have been saved to users.json");
+                MessageBox.Show("Users have been saved to all_users_departments.json");
             }
 
             return returnUsers;
@@ -167,6 +181,21 @@ namespace sae_db_manager
             }
             connection.Close();
 
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\search_users_departments.json", json);
+
+                MessageBox.Show("Users have been saved to search_users_departments.json");
+            }
+
             return returnUsers;
         }
 
@@ -195,6 +224,21 @@ namespace sae_db_manager
                 }
             }
             connection.Close();
+
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\all_users_roles.json", json);
+
+                MessageBox.Show("Users have been saved to all_users_roles.json");
+            }
 
             return returnUsers;
         }
@@ -229,6 +273,21 @@ namespace sae_db_manager
                 }
             }
             connection.Close();
+
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUsers, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\search_users_roles.json", json);
+
+                MessageBox.Show("Users have been saved to search_users_roles.json");
+            }
 
             return returnUsers;
         }

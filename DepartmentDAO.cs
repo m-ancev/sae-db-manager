@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace sae_db_manager
     {
         //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         public string ConnectionString { get; set; }
-        public List<Department> GetAllDepartments(bool export)
+        public List<JObject> GetAllDepartments(bool export)
         {
-            List<Department> returnDepartments = new List<Department>();
+            List<JObject> returnDepartments = new List<JObject>();
 
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
@@ -24,22 +25,37 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    Department department = new Department
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        DepartmentID = reader.GetInt32(0),
-                        DepartmentName = reader.GetString(1),
-                    };
-                    returnDepartments.Add(department);
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnDepartments.Add(user);
                 }
             }
             connection.Close();
 
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnDepartments, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\all_departments.json", json);
+
+                MessageBox.Show("Users have been saved to all_departments.json");
+            }
             return returnDepartments;
         }
 
-        public List<Department> GetAnyEntryFromDepartments(String searchQuery, bool export)
+        public List<JObject> GetAnyEntryFromDepartments(String searchQuery, bool export)
         {
-            List<Department> returnDepartments = new List<Department>();
+            List<JObject> returnDepartments = new List<JObject>();
 
 
             MySqlConnection connection = new MySqlConnection(ConnectionString);
@@ -57,15 +73,31 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    Department department = new Department
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        DepartmentID = reader.GetInt32(0),
-                        DepartmentName = reader.GetString(1)
-                    };
-                    returnDepartments.Add(department);
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnDepartments.Add(user);
                 }
             }
             connection.Close();
+
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnDepartments, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\search_departments.json", json);
+
+                MessageBox.Show("Users have been saved to search_departments.json");
+            }
 
             return returnDepartments;
         }

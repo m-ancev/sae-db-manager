@@ -15,9 +15,9 @@ namespace sae_db_manager
         public string ConnectionString { get; set; }
 
 
-        public List<UserRole> GetAllUserRoles(bool export)
+        public List<JObject> GetAllUserRoles(bool export)
         {
-            List<UserRole> returnUserRoles = new List<UserRole>();
+            List<JObject> returnUserRoles = new List<JObject>();
 
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
@@ -28,22 +28,38 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    UserRole userRole = new UserRole
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        UserID = reader.GetInt32(0),
-                        RoleID = reader.GetInt32(1),
-                    };
-                    returnUserRoles.Add(userRole);
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnUserRoles.Add(user);
                 }
             }
             connection.Close();
 
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUserRoles, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\all_userroles.json", json);
+
+                MessageBox.Show("Users have been saved to all_userroles.json");
+            }
+
             return returnUserRoles;
         }
 
-        public List<UserRole> GetAnyEntryFromUserRoles(String searchQuery, bool export)
+        public List<JObject> GetAnyEntryFromUserRoles(String searchQuery, bool export)
         {
-            List<UserRole> returnUserRoles = new List<UserRole>();
+            List<JObject> returnUserRoles = new List<JObject>();
 
             MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
@@ -60,15 +76,31 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    UserRole userRole = new UserRole
+                    JObject user = new JObject();
+
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        UserID = reader.GetInt32(0),
-                        RoleID = reader.GetInt32(1),
-                    };
-                    returnUserRoles.Add(userRole);
+                        user.Add(reader.GetName(i).ToString(), reader.GetValue(i).ToString());
+                    }
+                    returnUserRoles.Add(user);
                 }
             }
             connection.Close();
+
+            if (export == true)
+            {
+                string json = Newtonsoft.Json.JsonConvert.SerializeObject(returnUserRoles, Newtonsoft.Json.Formatting.Indented);
+
+                string directory = @"C:\DATA";
+                if (!System.IO.Directory.Exists(directory))
+                {
+                    System.IO.Directory.CreateDirectory(directory);
+                }
+
+                System.IO.File.WriteAllText(directory + @"\search_userroles.json", json);
+
+                MessageBox.Show("Users have been saved to search_userroles.json");
+            }
 
             return returnUserRoles;
         }
