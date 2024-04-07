@@ -12,7 +12,7 @@ namespace sae_db_manager
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UsersDAO usersDAO = new UsersDAO();
+            UserDAO usersDAO = new UserDAO();
 
             usersBindingSource.DataSource = usersDAO.GetAllUsers();
 
@@ -21,7 +21,7 @@ namespace sae_db_manager
 
         private void button2_Click(object sender, EventArgs e)
         {
-            UsersDAO usersDAO = new UsersDAO();
+            UserDAO usersDAO = new UserDAO();
 
             usersBindingSource.DataSource = usersDAO.GetUserByUserName(textBox1.Text);
 
@@ -30,7 +30,7 @@ namespace sae_db_manager
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Users user = new Users
+            User user = new User
             {
                 UserName = txt_UserName.Text,
                 Password = txt_Password.Text,
@@ -42,9 +42,9 @@ namespace sae_db_manager
                 BirthDate = DateTime.ParseExact(txt_BirthDate.Text, "dd.MM.yyyy", null),
                 HireDate = DateTime.ParseExact(txt_HireDate.Text, "dd.MM.yyyy", null),
                 DepartmentID = int.Parse(txt_DepartmentID.Text)
-        };
+            };
 
-            UsersDAO usersDAO = new UsersDAO();
+            UserDAO usersDAO = new UserDAO();
             int result = usersDAO.AddUser(user);
             MessageBox.Show(result + " record(s) inserted.");
 

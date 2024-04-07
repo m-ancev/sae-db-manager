@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace sae_db_manager
 {
-    internal class UsersDAO
+    internal class UserDAO
     {
         string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         
-        public List<Users> GetAllUsers()
+        public List<User> GetAllUsers()
         {
-            List<Users> returnUsers = new List<Users>();
+            List<User> returnUsers = new List<User>();
 
 
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -25,7 +25,7 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    Users user = new Users
+                    User user = new User
                     {
                         UserID = reader.GetInt32(0),
                         UserName = reader.GetString(1),
@@ -48,9 +48,9 @@ namespace sae_db_manager
             return returnUsers;
         }
 
-        public List<Users> GetUserByUserName(String searchQuery)
+        public List<User> GetUserByUserName(String searchQuery)
         {
-            List<Users> returnUsers = new List<Users>();
+            List<User> returnUsers = new List<User>();
 
 
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -68,7 +68,7 @@ namespace sae_db_manager
             {
                 while (reader.Read())
                 {
-                    Users user = new Users
+                    User user = new User
                     {
                         UserID = reader.GetInt32(0),
                         UserName = reader.GetString(1),
@@ -91,7 +91,7 @@ namespace sae_db_manager
             return returnUsers;
         }
 
-        public int AddUser(Users user)
+        public int AddUser(User user)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();

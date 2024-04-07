@@ -8,7 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace sae_db_manager
 {
-    internal class Users
+    internal class User
     {
         public int UserID { get; set; }
         public string UserName { get; set; }
