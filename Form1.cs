@@ -7,6 +7,8 @@ namespace sae_db_manager
         BindingSource rolesBindingSource = new BindingSource();
         BindingSource userRolesBindingSource = new BindingSource();
 
+        string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+
         public Form1()
         {
             InitializeComponent();
@@ -15,6 +17,7 @@ namespace sae_db_manager
         private void button1_Click(object sender, EventArgs e)
         {
             UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
 
             usersBindingSource.DataSource = userDAO.GetAllUsers();
 
@@ -24,6 +27,7 @@ namespace sae_db_manager
         private void button2_Click(object sender, EventArgs e)
         {
             UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
 
             usersBindingSource.DataSource = userDAO.GetAnyEntryFromUsers(textBox1.Text);
 
@@ -47,6 +51,7 @@ namespace sae_db_manager
             };
 
             UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
             int result = userDAO.AddUser(user);
             MessageBox.Show(result + " record(s) inserted.");
         }
@@ -54,6 +59,7 @@ namespace sae_db_manager
         private void button4_Click(object sender, EventArgs e)
         {
             DepartmentDAO departmentDAO = new DepartmentDAO();
+            departmentDAO.ConnectionString = connectionString;
 
             departmentsBindingSource.DataSource = departmentDAO.GetAllDepartments();
 
@@ -63,6 +69,7 @@ namespace sae_db_manager
         private void button5_Click(object sender, EventArgs e)
         {
             RoleDAO roleDAO = new RoleDAO();
+            roleDAO.ConnectionString = connectionString;
 
             rolesBindingSource.DataSource = roleDAO.GetAllRoles();
 
@@ -72,6 +79,7 @@ namespace sae_db_manager
         private void button6_Click(object sender, EventArgs e)
         {
             DepartmentDAO departmentDAO = new DepartmentDAO();
+            departmentDAO.ConnectionString = connectionString;
 
             departmentsBindingSource.DataSource = departmentDAO.GetAnyEntryFromDepartments(textBox2.Text);
 
@@ -81,6 +89,7 @@ namespace sae_db_manager
         private void button7_Click(object sender, EventArgs e)
         {
             RoleDAO roleDAO = new RoleDAO();
+            roleDAO.ConnectionString = connectionString;
 
             rolesBindingSource.DataSource = roleDAO.GetAnyEntryFromRoles(textBox3.Text);
 
@@ -95,6 +104,7 @@ namespace sae_db_manager
             };
 
             DepartmentDAO departmentDAO = new DepartmentDAO();
+            departmentDAO.ConnectionString = connectionString;
 
             int result = departmentDAO.AddDepartment(department);
             MessageBox.Show(result + " record(s) inserted.");
@@ -108,6 +118,7 @@ namespace sae_db_manager
             };
 
             RoleDAO roleDAO = new RoleDAO();
+            roleDAO.ConnectionString = connectionString;
 
             int result = roleDAO.AddRole(role);
             MessageBox.Show(result + " record(s) inserted.");
@@ -131,6 +142,7 @@ namespace sae_db_manager
             };
 
             UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
             int result = userDAO.UpdateUser(user);
             MessageBox.Show(result + " record(s) updated.");
         }
@@ -138,6 +150,7 @@ namespace sae_db_manager
         private void button13_Click(object sender, EventArgs e)
         {
             UserRoleDAO userRoleDAO = new UserRoleDAO();
+            userRoleDAO.ConnectionString = connectionString;
 
             userRolesBindingSource.DataSource = userRoleDAO.GetAllUserRoles();
 
@@ -147,6 +160,7 @@ namespace sae_db_manager
         private void button14_Click(object sender, EventArgs e)
         {
             UserRoleDAO userRoleDAO = new UserRoleDAO();
+            userRoleDAO.ConnectionString = connectionString;
 
             userRolesBindingSource.DataSource = userRoleDAO.GetAnyEntryFromUserRoles(textBox4.Text);
 
@@ -162,6 +176,7 @@ namespace sae_db_manager
             };
 
             UserRoleDAO userRoleDAO = new UserRoleDAO();
+            userRoleDAO.ConnectionString = connectionString;
             int result = userRoleDAO.UpdateUserRole(userRole);
             MessageBox.Show(result + " record(s) updated.");
         }
@@ -169,6 +184,7 @@ namespace sae_db_manager
         private void button15_Click(object sender, EventArgs e)
         {
             UserDAO userDAO = new UserDAO();
+            userDAO.ConnectionString = connectionString;
 
             User user = new User
             {
@@ -181,6 +197,7 @@ namespace sae_db_manager
         private void button11_Click(object sender, EventArgs e)
         {
             DepartmentDAO departmentDAO = new DepartmentDAO();
+            departmentDAO.ConnectionString = connectionString;
             Department department = new Department
             {
                 DepartmentID = int.Parse(txt_DepartmentID3.Text)
@@ -192,12 +209,26 @@ namespace sae_db_manager
         private void button12_Click(object sender, EventArgs e)
         {
             RoleDAO roleDAO = new RoleDAO();
+            roleDAO.ConnectionString = connectionString;
             Role role = new Role
             {
                 RoleID = int.Parse(txt_RoleID.Text)
             };
             roleDAO.DeleteRole(role);
             MessageBox.Show("Role deleted.");
+        }
+
+        public void button17_Click(object sender, EventArgs e)
+        {
+            string datasource = txtDatasource.Text;
+            string port = txtPort.Text;
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+            string database = txtDatabase.Text;
+
+            DatabaseConnector databaseConnector = new DatabaseConnector();
+            
+            connectionString = databaseConnector.BuildConnectionString(datasource, port, username, password, database);
         }
     }
 }

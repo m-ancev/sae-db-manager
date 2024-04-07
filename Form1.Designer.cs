@@ -113,6 +113,18 @@
             button16 = new Button();
             txt_UserID3 = new TextBox();
             label27 = new Label();
+            groupBox9 = new GroupBox();
+            txtDatasource = new TextBox();
+            label29 = new Label();
+            button17 = new Button();
+            txtDatabase = new TextBox();
+            txtPassword = new TextBox();
+            txtUsername = new TextBox();
+            txtPort = new TextBox();
+            label36 = new Label();
+            label37 = new Label();
+            label38 = new Label();
+            label39 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -122,6 +134,7 @@
             groupBox6.SuspendLayout();
             groupBox7.SuspendLayout();
             groupBox8.SuspendLayout();
+            groupBox9.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -905,11 +918,127 @@
             label27.TabIndex = 1;
             label27.Text = "UserID";
             // 
+            // groupBox9
+            // 
+            groupBox9.Controls.Add(txtDatasource);
+            groupBox9.Controls.Add(label29);
+            groupBox9.Controls.Add(button17);
+            groupBox9.Controls.Add(txtDatabase);
+            groupBox9.Controls.Add(txtPassword);
+            groupBox9.Controls.Add(txtUsername);
+            groupBox9.Controls.Add(txtPort);
+            groupBox9.Controls.Add(label36);
+            groupBox9.Controls.Add(label37);
+            groupBox9.Controls.Add(label38);
+            groupBox9.Controls.Add(label39);
+            groupBox9.Location = new Point(915, 456);
+            groupBox9.Name = "groupBox9";
+            groupBox9.Size = new Size(257, 192);
+            groupBox9.TabIndex = 29;
+            groupBox9.TabStop = false;
+            groupBox9.Text = "Database Connection";
+            // 
+            // txtDatasource
+            // 
+            txtDatasource.Location = new Point(117, 22);
+            txtDatasource.Name = "txtDatasource";
+            txtDatasource.PlaceholderText = "localhost";
+            txtDatasource.Size = new Size(133, 23);
+            txtDatasource.TabIndex = 24;
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(6, 25);
+            label29.Name = "label29";
+            label29.Size = new Size(66, 15);
+            label29.TabIndex = 23;
+            label29.Text = "Datasource";
+            // 
+            // button17
+            // 
+            button17.Location = new Point(117, 163);
+            button17.Name = "button17";
+            button17.Size = new Size(133, 23);
+            button17.TabIndex = 22;
+            button17.Text = "Connect";
+            button17.UseVisualStyleBackColor = true;
+            button17.Click += button17_Click;
+            // 
+            // txtDatabase
+            // 
+            txtDatabase.Location = new Point(117, 134);
+            txtDatabase.Name = "txtDatabase";
+            txtDatabase.PlaceholderText = "user_management";
+            txtDatabase.Size = new Size(133, 23);
+            txtDatabase.TabIndex = 15;
+            // 
+            // txtPassword
+            // 
+            txtPassword.Location = new Point(117, 106);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PlaceholderText = "root";
+            txtPassword.Size = new Size(133, 23);
+            txtPassword.TabIndex = 14;
+            // 
+            // txtUsername
+            // 
+            txtUsername.Location = new Point(117, 78);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PlaceholderText = "root";
+            txtUsername.Size = new Size(133, 23);
+            txtUsername.TabIndex = 13;
+            // 
+            // txtPort
+            // 
+            txtPort.Location = new Point(117, 50);
+            txtPort.Name = "txtPort";
+            txtPort.PlaceholderText = "3306";
+            txtPort.Size = new Size(133, 23);
+            txtPort.TabIndex = 12;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Location = new Point(6, 137);
+            label36.Name = "label36";
+            label36.Size = new Size(55, 15);
+            label36.TabIndex = 4;
+            label36.Text = "Database";
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Location = new Point(6, 109);
+            label37.Name = "label37";
+            label37.Size = new Size(57, 15);
+            label37.TabIndex = 3;
+            label37.Text = "Password";
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Location = new Point(6, 81);
+            label38.Name = "label38";
+            label38.Size = new Size(60, 15);
+            label38.TabIndex = 2;
+            label38.Text = "Username";
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.Location = new Point(6, 53);
+            label39.Name = "label39";
+            label39.Size = new Size(29, 15);
+            label39.TabIndex = 1;
+            label39.Text = "Port";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1193, 974);
+            ClientSize = new Size(1184, 974);
+            Controls.Add(groupBox9);
             Controls.Add(groupBox8);
             Controls.Add(groupBox7);
             Controls.Add(button14);
@@ -950,6 +1079,8 @@
             groupBox7.PerformLayout();
             groupBox8.ResumeLayout(false);
             groupBox8.PerformLayout();
+            groupBox9.ResumeLayout(false);
+            groupBox9.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1041,5 +1172,17 @@
         private Label label27;
         private TextBox txt_RoleID2;
         private Label label28;
+        private GroupBox groupBox9;
+        private TextBox txtDatasource;
+        private Label label29;
+        private Button button17;
+        private TextBox txtPassword;
+        private TextBox txtUsername;
+        private TextBox txtPort;
+        private Label label37;
+        private Label label38;
+        private Label label39;
+        private TextBox txtDatabase;
+        private Label label36;
     }
 }

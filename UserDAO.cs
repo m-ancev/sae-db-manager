@@ -9,14 +9,15 @@ namespace sae_db_manager
 {
     internal class UserDAO
     {
-        string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
-        
+        //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+        public string ConnectionString { get; set; }
+
         public List<User> GetAllUsers()
         {
             List<User> returnUsers = new List<User>();
 
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand("SELECT * FROM users", connection);
@@ -39,7 +40,6 @@ namespace sae_db_manager
                         HireDate = reader.GetDateTime(9),
                         DepartmentID = reader.GetInt32(10)
                     };
-
                     returnUsers.Add(user);
                 }
             }
@@ -53,7 +53,7 @@ namespace sae_db_manager
             List<User> returnUsers = new List<User>();
 
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             String searchFuzzyQuery = "%" + searchQuery + "%";
@@ -92,7 +92,7 @@ namespace sae_db_manager
 
         public int AddUser(User user)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
@@ -120,7 +120,7 @@ namespace sae_db_manager
 
         public int UpdateUser(User user)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
@@ -150,7 +150,7 @@ namespace sae_db_manager
 
         public int DeleteUser(User user)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();

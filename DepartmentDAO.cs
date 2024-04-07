@@ -9,12 +9,13 @@ namespace sae_db_manager
 {
     internal class DepartmentDAO
     {
-        string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+        //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+        public string ConnectionString { get; set; }
         public List<Department> GetAllDepartments()
         {
             List<Department> returnDepartments = new List<Department>();
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand("SELECT * FROM departments", connection);
@@ -41,7 +42,7 @@ namespace sae_db_manager
             List<Department> returnDepartments = new List<Department>();
 
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             String searchFuzzyQuery = "%" + searchQuery + "%";
@@ -71,7 +72,7 @@ namespace sae_db_manager
 
         public int AddDepartment(Department department)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
@@ -88,7 +89,7 @@ namespace sae_db_manager
 
         public int DeleteDepartment(Department department)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();

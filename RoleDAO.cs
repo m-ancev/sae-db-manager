@@ -10,13 +10,14 @@ namespace sae_db_manager
 
     internal class RoleDAO
     {
-        string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+        //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+        public string ConnectionString { get; set; }
 
         public List<Role> GetAllRoles()
         {
             List<Role> returnRoles = new List<Role>();
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand("SELECT * FROM roles", connection);
@@ -42,7 +43,7 @@ namespace sae_db_manager
         {
             List<Role> returnRoles = new List<Role>();
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             String searchFuzzyQuery = "%" + searchQuery + "%";
@@ -72,7 +73,7 @@ namespace sae_db_manager
 
         public int AddRole(Role role)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
@@ -90,7 +91,7 @@ namespace sae_db_manager
         // delete role
         public int DeleteRole(Role role)
         {
-            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlConnection connection = new MySqlConnection(ConnectionString);
             connection.Open();
 
             MySqlCommand command = new MySqlCommand();
