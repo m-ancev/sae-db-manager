@@ -21,6 +21,5 @@ namespace sae_db_manager
         public DateTime BirthDate { get; set; }
         public DateTime HireDate { get; set; }
         public int DepartmentID { get; set; }
-
     }
 }

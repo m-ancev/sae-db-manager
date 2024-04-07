@@ -48,7 +48,7 @@ namespace sae_db_manager
             return returnUsers;
         }
 
-        public List<User> GetUserByUserName(String searchQuery)
+        public List<User> GetAnyEntryFromUsers(String searchQuery)
         {
             List<User> returnUsers = new List<User>();
 
@@ -60,7 +60,7 @@ namespace sae_db_manager
 
             MySqlCommand command = new MySqlCommand();
 
-            command.CommandText = "SELECT * FROM users WHERE UserName LIKE @search";
+            command.CommandText = "SELECT * FROM users WHERE UserName LIKE @search OR Password LIKE @search OR First_Name LIKE @search OR Last_Name LIKE @search OR Email LIKE @search OR Phone LIKE @search OR Address LIKE @search OR Birth_Date LIKE @search OR Hire_Date LIKE @search OR Department_ID LIKE @search";
             command.Parameters.AddWithValue("@search", searchFuzzyQuery);
             command.Connection = connection;
 
@@ -82,7 +82,6 @@ namespace sae_db_manager
                         HireDate = reader.GetDateTime(9),
                         DepartmentID = reader.GetInt32(10)
                     };
-
                     returnUsers.Add(user);
                 }
             }
