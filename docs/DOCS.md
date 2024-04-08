@@ -454,7 +454,6 @@ Methods
 
 | Testnummer | Testbeschreibung                                                                                                   | Erwartetes Ergebnis                                                                                  | Bestanden |
 |------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------|
-|
 | 1          | Abteilung anlegen: Es werden alle Felder (bis auf die DepartmentID) ausgefüllt und der Button “Create” geklickt. | Abteilung wird erfolgreich angelegt und ist auch in der Datenbank zu sehen.                              | ✅        |
 | 2          | Abteilung suchen: Es wird ein Text, der in den Informationen des Eintrages vorhanden ist, in die Suchleiste eingegeben. Anschließend wird der Button “Search” geklickt.            | Alle Felder werden automatisch mit den Informationen der Abteilung gefüllt.                              | ✅        |
 | 3          | Abteilung löschen: Es wird nur das DepartmentID-Feld mit einer existierenden DepartmentID gefüllt. Anschließend wird der Button “Delete” geklickt.           | Der Eintrag der Abteilung und damit verbundene Informationen werden gelöscht. Wenn es die einzige Abteilung an genau dieser Adresse war, wird auch die Adresse aus der Datenbank gelöscht. | ✅        |
