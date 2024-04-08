@@ -199,7 +199,6 @@ namespace sae_db_manager
             return returnUsers;
         }
 
-        // get all users and role names
         public List<JObject> GetAllUsersAndRoleName(bool export)
         {
             List<JObject> returnUsers = new List<JObject>();

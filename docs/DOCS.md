@@ -79,7 +79,9 @@ Verwendet wurde [Microsoft Planner](https://tasks.office.com/itSchuleStuttgart1.
 
 ### Demonstrationsprototyp Packet Tracer
 
-< Aufbau eines exemplarischen, funktionsfähigen Netzwerks >
+Der Prototyp wurde in [Cisco Packet Tracer](https://www.netacad.com/courses/packet-tracer) erstellt.
+
+Link zum [Prototyp](../pt_files/Schulprojekt%201%20v0.6.pkt).
 
 ## Teil 2: Datenbank mit Datenexport
 
@@ -98,47 +100,383 @@ Verwendet wurde [Microsoft Planner](https://tasks.office.com/itSchuleStuttgart1.
 
 ### Use Case Analyse
 
-< Grafische Darstellung der Anforderungen in Form von Use Cases >
-![use_case_example.png](use_case_example.png)
+![use_case_example.png](use_case_analysis.png)
 
 ### Use Case Beschreibung
 
-< Detaillierte Beschreibung der Use Cases nach einer vorgegebenen Struktur >
-
-| USE CASE: Schüler entschuldigen ||
+| USE CASE: Nutzerliste anzeigen ||
 | --- | --- |
-| **Primärer Aktor** | Klassenlehrer |
-| **Vorbedingung** | Fehlzeit vorhanden |
-| **Wichtigstes Erfolgsszenario** | 1. Lehrer sucht Schüler <br> 2. Fehlzeiten des Schülers werden angezeigt <br> 3. Fehlzeit wird bearbeitet <br> 4. Fehlzeit wird gespeichert |
-| **Wichtige Varianten** | 2.a Fehlzeit befindet sich nicht im System obwohl Entschuldigung vorliegt <br> 3.a Wechsel zu Use Case ‚Fehlzeit eintragen’ |
-| **Auswirkungen** | Fehlzeit als ‚Entschuldigt’ markiert |
-| **Anmerkungen** | Klassenlehrer kann sowohl Anfang als auch Ende der Fehlzeit bearbeiten |
-| **Offene Fragen** | Darf vorhandene Fehlzeit gelöscht werden? |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzerinformationen sind unbekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Administrator sucht Nutzer <br> 2. Nutzerinformationen werden angezeigt |
+| **Wichtige Varianten** | 1.a Administrator kennt nur manche Nutzerinformationen <br> 1.b Wechsel zu Use Case ‚Nutzer suchen’ |
+| **Auswirkungen** | Nutzerinformationen sind sichtbar |
+| **Anmerkungen** | Alle Nutzerinformationen sind für den Super User sichtbar |
+| **Offene Fragen** | Sollen für den Super User nicht relevante Informationen verborgen werden? |
 
-| USE CASE: Klassenliste bearbeiten ||
+| USE CASE: Rollenliste anzeigen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Rolleninformationen sind unbekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Administrator sucht Rolle <br> 2. Rolleninformationen werden angezeigt |
+| **Wichtige Varianten** | 1.a Administrator kennt nur manche Rolleninformationen <br> 1.b Wechsel zu Use Case ‚Rolle suchen’ |
+| **Auswirkungen** | Rolleninformationen sind sichtbar |
+| **Anmerkungen** | Alle Rolleninformationen sind für den Super User sichtbar |
+| **Offene Fragen** | Sollen für den Super User nicht relevante Informationen verborgen werden? |
+
+| USE CASE: Abteilungsliste anzeigen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Abteilungsinformationen sind unbekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Administrator sucht Abteilung <br> 2. Abteilungsinformationen werden angezeigt |
+| **Wichtige Varianten** | 1.a Administrator kennt nur manche Abteilungsinformationen <br> 1.b Wechsel zu Use Case ‚Abteilung suchen’ |
+| **Auswirkungen** | Abteilungsinformationen sind sichtbar |
+| **Anmerkungen** | Alle Abteilungsinformationen sind für den Super User sichtbar |
+| **Offene Fragen** | Sollen für den Super User nicht relevante Informationen verborgen werden? |
+
+| USE CASE: Nutzerrollen anzeigen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzerrolleninformationen sind unbekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Administrator sucht Nutzerrolle <br> 2. Nutzerrolleninformationen werden angezeigt |
+| **Wichtige Varianten** | 1.a Administrator kennt nur manche Nutzerrolleninformationen <br> 1.b Wechsel zu Use Case ‚Nutzerrolle suchen’ |
+| **Auswirkungen** | Nutzerrolleninformationen sind sichtbar |
+| **Anmerkungen** | Alle Nutzerrolleninformationen sind für den Super User sichtbar |
+| **Offene Fragen** | Sollen für den Super User nicht relevante Informationen verborgen werden? |
+
+| USE CASE: Rollenabhängige Nutzerliste anzeigen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Rollenabhängige Nutzerinformationen sind unbekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Administrator sucht rollenabhängige Nutzerliste <br> 2. Rollenabhängige Nutzerinformationen werden angezeigt |
+| **Wichtige Varianten** | 1.a Administrator kennt nur manche rollenabhängige Nutzerinformationen <br> 1.b Wechsel zu Use Case ‚Rollenabhängige Nutzerliste suchen’ |
+| **Auswirkungen** | Rollenabhängige Nutzerinformationen sind sichtbar |
+| **Anmerkungen** | Alle rollenabhängigen Nutzerinformationen sind für den Super User sichtbar |
+| **Offene Fragen** | Sollen für den Super User nicht relevante Informationen verborgen werden? |
+
+| USE CASE: Nutzer suchen ||
 |---|---|
-| Primärer Aktor | Lehrer |
-| Vorbedingung | Klassenliste nicht aktuell |
-| Wichtigstes Erfolgsszenario | 1. Lehrer wählt Klasse aus <br> 2. Schülerliste wird angezeigt <br> 3. Lehrer ändert Daten |
-| Wichtige Varianten | 2.a keine Schüler vorhanden <br> 3.a Lehrer fügt Schüler hinzu |
-| Auswirkungen | Schülerliste wird aktualisiert |
-| Anmerkungen | Jeder Lehrer kann Klassenliste jederzeit bearbeiten |
-| Offene Fragen | - |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzerinformationen sind bekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Super User sucht nach Nutzer anhand von Nutzername, Vorname, Nachname, etc. nach Nutzereintrag <br> 2. Nutzerliste wird angezeigt |
+| **Wichtige Varianten** | 2.a Wechsel zu Use Case ‚Liste exportieren’ <br> 2.b Super User sucht nach dem nächsten Nutzer, wechsel zu Use Case ,Nutzer suchen’ |
+| **Auswirkungen** | Angezeigte Nutzerliste zeigt anhand von Suchkriterien gefundene Nutzer an |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Rolle suchen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Rolleninformationen sind bekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Super User sucht nach Rolle anhand von Rollenname, Beschreibung, etc. <br> 2. Rollenliste wird angezeigt |
+| **Wichtige Varianten** | 2.a Wechsel zu Use Case ‚Liste exportieren’ <br> 2.b Super User sucht nach der nächsten Rolle, wechsel zu Use Case ‚Rolle suchen’ |
+| **Auswirkungen** | Angezeigte Rollenliste zeigt anhand von Suchkriterien gefundene Rollen an |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Abteilung suchen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Abteilungsinformationen sind bekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Super User sucht nach Abteilung anhand von Abteilungsname, Beschreibung, etc. <br> 2. Abteilungsliste wird angezeigt |
+| **Wichtige Varianten** | 2.a Wechsel zu Use Case ‚Liste exportieren’ <br> 2.b Super User sucht nach der nächsten Abteilung, wechsel zu Use Case ‚Abteilung suchen’ |
+| **Auswirkungen** | Angezeigte Abteilungsliste zeigt anhand von Suchkriterien gefundene Abteilungen an |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Nutzerrolle suchen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzerrolleninformationen sind bekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Super User sucht nach Nutzerrolle anhand von Rollenname, Beschreibung, etc. <br> 2. Nutzerrollenliste wird angezeigt |
+| **Wichtige Varianten** | 2.a Wechsel zu Use Case ‚Liste exportieren’ <br> 2.b Super User sucht nach der nächsten Nutzerrolle, wechsel zu Use Case ‚Nutzerrolle suchen’ |
+| **Auswirkungen** | Angezeigte Nutzerrollenliste zeigt anhand von Suchkriterien gefundene Nutzerrollen an |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Rollenabhängige Nutzerliste suchen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Rollenabhängige Nutzerinformationen sind bekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Super User sucht nach rollenabhängiger Nutzerliste anhand von Rollenname, Beschreibung, etc. <br> 2. Rollenabhängige Nutzerliste wird angezeigt |
+| **Wichtige Varianten** | 2.a Wechsel zu Use Case ‚Liste exportieren’ <br> 2.b Super User sucht nach der nächsten rollenabhängigen Nutzerliste, wechsel zu Use Case ‚Rollenabhängige Nutzerliste suchen’ |
+| **Auswirkungen** | Angezeigte rollenabhängige Nutzerliste zeigt anhand von Suchkriterien gefundene rollenabhängige Nutzer an |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Abteilungsabhängige Nutzerliste suchen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Abteilungsabhängige Nutzerinformationen sind bekannt |
+| **Wichtigstes Erfolgsszenario** | 1. Super User sucht nach abteilungsabhängiger Nutzerliste anhand von Abteilungsname, Beschreibung, etc. <br> 2. Abteilungsabhängige Nutzerliste wird angezeigt |
+| **Wichtige Varianten** | 2.a Wechsel zu Use Case ‚Liste exportieren’ <br> 2.b Super User sucht nach der nächsten abteilungsabhängigen Nutzerliste, wechsel zu Use Case ‚Abteilungsabhängige Nutzerliste suchen’ |
+| **Auswirkungen** | Angezeigte abteilungsabhängige Nutzerliste zeigt anhand von Suchkriterien gefundene abteilungsabhängige Nutzer an |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Liste Exportieren ||
+|---|---|
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | - |
+| **Wichtigstes Erfolgsszenario** | 1. Super User exportiert Liste der aktuellen Tabelle <br> 2. Exportierte Liste wird als Datei auf dem Rechner abgespeichert unter "C:/DATA/" |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Exportierte Tabelle befindet sich auf "C:/DATA/" im JSON Format mit relevanter Benennung |
+| **Anmerkungen** | Bei erneutem Exportieren wird die alte Datei überschrieben |
+| **Offene Fragen** | Sollten erneut Exportierte Dateien mit Suffixen versehen werden, oder alte Dateien in ein Backupverzeichnis verschoben werden, um Datenverlust zu verhindern? |
+
+| USE CASE: Nutzer erstellen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | - |
+| **Wichtigstes Erfolgsszenario** | 1. Super User erstellt neuen Nutzer mit relevanten Informationen wie Nutzername, Vorname, Nachname, usw. <br> 2. Bestätigung der erfolgreichen Erstellung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Neuer Nutzer wird im System angelegt |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Abteilung erstellen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | - |
+| **Wichtigstes Erfolgsszenario** | 1. Super User erstellt neue Abteilung mit relevanten Informationen wie Abteilungsname, Beschreibung, usw. <br> 2. Bestätigung der erfolgreichen Erstellung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Neue Abteilung wird im System angelegt |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Rolle erstellen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | - |
+| **Wichtigstes Erfolgsszenario** | 1. Super User erstellt neue Rolle mit relevanten Informationen wie Rollenname, Beschreibung, usw. <br> 2. Bestätigung der erfolgreichen Erstellung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Neue Rolle wird im System angelegt |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Nutzerdaten aktualisieren ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzer existiert im System |
+| **Wichtigstes Erfolgsszenario** | 1. Super User wählt einen bestehenden Nutzer aus <br> 2. Super User aktualisiert die relevanten Informationen des Nutzers wie Nutzername, Vorname, Nachname, usw. <br> 3. Bestätigung der erfolgreichen Aktualisierung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Nutzerinformationen werden im System aktualisiert |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Nutzerrolle aktualisieren ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzer und Rollen existieren im System |
+| **Wichtigstes Erfolgsszenario** | 1. Super User wählt einen bestehenden Nutzer aus <br> 2. Super User wählt eine neue oder bestehende Rolle aus <br> 3. Super User aktualisiert die Rolle des Nutzers <br> 4. Bestätigung der erfolgreichen Aktualisierung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Nutzerrolle wird im System aktualisiert |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Nutzer löschen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Nutzer existiert im System |
+| **Wichtigstes Erfolgsszenario** | 1. Super User wählt einen bestehenden Nutzer aus <br> 2. Super User bestätigt das Löschen des Nutzers <br> 3. Bestätigung der erfolgreichen Löschung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Nutzer wird aus dem System entfernt |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Abteilung löschen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Abteilung existiert im System |
+| **Wichtigstes Erfolgsszenario** | 1. Super User wählt eine bestehende Abteilung aus <br> 2. Super User bestätigt das Löschen der Abteilung <br> 3. Bestätigung der erfolgreichen Löschung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Abteilung wird aus dem System entfernt |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
+
+| USE CASE: Rolle löschen ||
+| --- | --- |
+| **Primärer Aktor** | Super User |
+| **Vorbedingung** | Rolle existiert im System |
+| **Wichtigstes Erfolgsszenario** | 1. Super User wählt eine bestehende Rolle aus <br> 2. Super User bestätigt das Löschen der Rolle <br> 3. Bestätigung der erfolgreichen Löschung wird angezeigt |
+| **Wichtige Varianten** | - |
+| **Auswirkungen** | Rolle wird aus dem System entfernt |
+| **Anmerkungen** | - |
+| **Offene Fragen** | - |
 
 ### Abgrenzungskriterien
 
-<Funktionalität die das System nicht besitzt>
+**Keine Integration von externen Diensten**: Das System integriert sich nicht automatisch mit externen Diensten oder Systemen wie CRM-Systemen, E-Mail-Diensten oder Kalendersystemen.
+
+**Kein Benachrichtigungssystem**: Das System bietet keine integrierten Benachrichtigungsfunktionen für Benutzer, wie z. B. E-Mail-Benachrichtigungen oder Push-Benachrichtigungen.
+
+**Keine Versionierung von Daten**: Das System verfügt nicht über Funktionen zur Versionierung von Daten. Es werden keine historischen Versionen von Datensätzen gespeichert oder verwaltet.
+
+**Keine Mehrsprachigkeit**: Das System unterstützt keine mehrsprachigen Benutzeroberflächen oder die Übersetzung von Inhalten in verschiedene Sprachen.
+
+**Kein Rollenbasiertes Zugriffsmanagement**: Das System bietet keine granulare rollenbasierte Zugriffskontrolle auf bestimmte Funktionen oder Datenbereiche. Super User hat Zugriff auf alle Funktionen, ist dennoch kein `root` User.
 
 ### Systemarchitektur
 
-<Beschreibung der verwendeten Infrastrukturkomponenten (Datenbanken, Server, Technologien) und grafische Darstellung der Gesamtarchitektur, z.B C#, MySQL Datenbank;>
+![system_architecture.png](system_architecture.png)
+
+Datenbank: [MySQL](https://www.mysql.com/)
+
+Programmiersprache: [C#](https://docs.microsoft.com/en-us/dotnet/csharp/)
+
+IDE: [Visual Studio](https://visualstudio.microsoft.com/)
+
+Datenbankverwaltung: [MySQL Workbench](https://www.mysql.com/products/workbench/)
+
+Versionsverwaltung: [Git](https://git-scm.com/)
+
+Dokumentation: [Markdown](https://www.markdownguide.org/)
+
+Vorkonfigurierte Datenbank mit `super_user` Rolle in den Einstellungen: [user_management.sql](../db_files/user_management.sql)
+
+### Datenbankstruktur
+
+![database_eer_diagram.png](database_eer_diagram.png)
 
 ### Implementierung
 
-### Statische Perspektive (Klassendiagramme)
+#### Klassenstruktur
 
-< UML-Klassendiagramm der wesentlichen Klassen >
+```csharp
+UserDAO
+
+- ConnectionString: string
+
+Methods
+
++ GetAllUsers(export: bool): List<JObject>
++ GetAnyEntryFromUsers(searchQuery: String, export: bool): List<JObject>
++ GetAllUsersAndDepartmentName(export: bool): List<JObject>
++ GetAnyEntryFromUsersAndDepartmentName(searchQuery: String, export: bool): List<JObject>
++ GetAllUsersAndRoleName(export: bool): List<JObject>
++ GetAnyEntryFromUsersAndRoleName(searchQuery: String, export: bool): List<JObject>
++ AddUser(user: User): int
++ UpdateUser(user: User): int
++ DeleteUser(user: User): int
+```
+
+```csharp
+User
+
+- UserID: int
+- UserName: string
+- Password: string
+- FirstName: string
+- LastName: string
+- Email: string
+- Phone: string
+- Address: string
+- BirthDate: DateTime
+- HireDate: DateTime
+- DepartmentID: int
+```
+
+```csharp
+RoleDAO
+
+- ConnectionString: string
+
+Methods
+
++ GetAllRoles(): List<JObject>
++ GetAnyEntryFromRoles(roleID: int): Role
++ AddRole(role: Role): int
++ DeleteRole(roleID: int): int
+```
+
+```csharp
+Role
+
+- RoleID: int
+- RoleName: string
+```
+
+```csharp
+DepartmentDAO
+
+- ConnectionString: string
+
+Methods
+
++ GetAllDepartments(): List<JObject>
+
++ GetAnyEntryFromDepartments(departmentID: int): Department
+
++ AddDepartment(department: Department): int
+
++ DeleteDepartment(departmentID: int): int
+```
+
+```csharp
+Department
+
+- DepartmentID: int
+
+- DepartmentName: string
+```
+
+```csharp
+UserRoleDAO
+
+- ConnectionString: string
+
+Methods
+
++ GetAllUserRoles(): List<JObject>
+
++ GetAnyEntryFromUserRoles(userID: int): UserRole
+
++ UpdateUserRole(userRole: UserRole): int
+```
+
+```csharp
+UserRole
+
+- RoleID: int
+
+- UserID: int
+```
+
+```csharp
+DatabaseConnection
+
+Methods
+
++ BuildConnectionString(): string
+```
 
 ### Test
 
-<Tabellarische Beschreibung der wesentlichen Testfälle und deren Durchführung. Zum Beispiel mit folgenden Spalten.: Testnummer- Testbeschreibung- Erwartetes Ergebnis - Bestanden>
+| Testnummer | Testbeschreibung                                                                                                   | Erwartetes Ergebnis                                                                                  | Bestanden |
+|------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|-----------|
+|
+| 1          | Abteilung anlegen: Es werden alle Felder (bis auf die DepartmentID) ausgefüllt und der Button “Create” geklickt. | Abteilung wird erfolgreich angelegt und ist auch in der Datenbank zu sehen.                              | ✅        |
+| 2          | Abteilung suchen: Es wird ein Text, der in den Informationen des Eintrages vorhanden ist, in die Suchleiste eingegeben. Anschließend wird der Button “Search” geklickt.            | Alle Felder werden automatisch mit den Informationen der Abteilung gefüllt.                              | ✅        |
+| 3          | Abteilung löschen: Es wird nur das DepartmentID-Feld mit einer existierenden DepartmentID gefüllt. Anschließend wird der Button “Delete” geklickt.           | Der Eintrag der Abteilung und damit verbundene Informationen werden gelöscht. Wenn es die einzige Abteilung an genau dieser Adresse war, wird auch die Adresse aus der Datenbank gelöscht. | ✅        |
+| 4          | Abteilungsliste anzeigen: Es wird der Button “Departments” oder “Search” ohne Eingabe geklickt.                              | Das aktuelle Fenster füllt sich mit Einträgen welches alle Abteilungen als Liste anzeigt. | ✅        |
+| 5          | Abteilung exportieren: Es wird die für die aktuelle Kategorie “Export” geklickt.                                 | Eine neue JSON-Datei wird im Testordner erstellt. In dieser Datei sind die Einträge erhalten. | ✅        |
+| 6          | Rolle anlegen: Es werden alle Felder (bis auf die RoleID) ausgefüllt und der Button “Create” geklickt. | Rolle wird erfolgreich angelegt und ist auch in der Datenbank zu sehen.                              | ✅        |
+| 7          | Rolle suchen: Es wird ein Text, der in den Informationen des Eintrages vorhanden ist, in die Suchleiste eingegeben. Anschließend wird der Button “Search” geklickt.            | Alle Felder werden automatisch mit den Informationen der Rolle gefüllt.                              | ✅        |
+| 8          | Rolle löschen: Es wird nur das RoleID-Feld mit einer existierenden RoleID gefüllt. Anschließend wird der Button “Delete” geklickt.           | Der Eintrag der Rolle und damit verbundene Informationen werden gelöscht. Wenn es die einzige Rolle an genau dieser Adresse war, wird auch die Adresse aus der Datenbank gelöscht. | ✅        |
+| 9          | Rollenliste anzeigen: Es wird der Button “Roles” oder “Search” ohne Eingabe geklickt.                              | Das aktuelle Fenster füllt sich mit Einträgen welches alle Rollen als Liste anzeigt. | ✅        |
+| 10         | Rolle exportieren: Es wird die für die aktuelle Kategorie “Export” geklickt.                                 | Eine neue JSON-Datei wird im Testordner erstellt. In dieser Datei sind die Einträge erhalten. | ✅        |
+| 11         | Nutzerrolle suchen: Es wird ein Text, der in den Informationen des Eintrages vorhanden ist, in die Suchleiste eingegeben. Anschließend wird der Button “Search” geklickt.            | Alle Felder werden automatisch mit den Informationen der Nutzerrolle gefüllt.                              | ✅        |
+| 12         | Nutzerrolle aktualisieren: Es wird nur das RoleID-Feld mit einer existierenden RoleID gefüllt. Anschließend wird der Button “Update” geklickt.           | Der Eintrag der Nutzerrolle und damit verbundene Informationen werden aktualisiert. | ✅        |
+| 13         | Nutzerrollenliste anzeigen: Es wird der Button “UserRoles” oder “Search” ohne Eingabe geklickt.                              | Das aktuelle Fenster füllt sich mit Einträgen welches alle Nutzerrollen als Liste anzeigt. | ✅        |
+| 14         | Nutzerrolle exportieren: Es wird die für die aktuelle Kategorie “Export” geklickt.                                 | Eine neue JSON-Datei wird im Testordner erstellt. In dieser Datei sind die Einträge erhalten. | ✅        |
+| 15         | Nutzerdaten aktualisieren: Es werden alle Felder (bis auf die UserID) ausgefüllt und der Button “Update” geklickt. | Nutzerdaten werden erfolgreich aktualisiert und sind auch in der Datenbank zu sehen.                              | ✅        |
+| 16         | Nutzer löschen: Es wird nur das UserID-Feld mit einer existierenden UserID gefüllt. Anschließend wird der Button “Delete” geklickt.           | Der Eintrag des Nutzers und damit verbundene Informationen werden gelöscht. Wenn es der einzige Nutzer an genau dieser Adresse war, wird auch die Adresse aus der Datenbank gelöscht. | ✅        |
+| 17         | Nutzerliste anzeigen: Es wird der Button “Users” oder “Search” ohne Eingabe geklickt.                              | Das aktuelle Fenster füllt sich mit Einträgen welches alle Nutzer als Liste anzeigt. | ✅        |
+| 18         | Nutzer exportieren: Es wird die für die aktuelle Kategorie “Export” geklickt.                                 | Eine neue JSON-Datei wird im Testordner erstellt. In dieser Datei sind die Einträge erhalten. | ✅        |
+| 19         | Rollenabhängige Nutzerliste suchen: Es wird ein Text, der in den Informationen des Eintrages vorhanden ist, in die Suchleiste eingegeben. Anschließend wird der Button “Search” geklickt.            | Alle Felder werden automatisch mit den Informationen der rollenabhängigen Nutzerliste gefüllt.                              | ✅        |
+| 20         | Rollenabhängige Nutzerliste anzeigen: Es wird der Button “RoleBasedUsers” oder “Search” ohne Eingabe geklickt.                              | Das aktuelle Fenster füllt sich mit Einträgen welches alle rollenabhängigen Nutzerlisten als Liste anzeigt. | ✅        |
+| 21         | Rollenabhängige Nutzerliste exportieren: Es wird die für die aktuelle Kategorie “Export” geklickt.                                 | Eine neue JSON-Datei wird im Testordner erstellt. In dieser Datei sind die Einträge erhalten. | ✅        |
+| 22         | Abteilungsabhängige Nutzerliste suchen: Es wird ein Text, der in den Informationen des Eintrages vorhanden ist, in die Suchleiste eingegeben. Anschließend wird der Button “Search” geklickt.            | Alle Felder werden automatisch mit den Informationen der abteilungsabhängigen Nutzerliste gefüllt.                              | ✅        |
+| 23         | Abteilungsabhängige Nutzerliste anzeigen: Es wird der Button “DepartmentBasedUsers” oder “Search” ohne Eingabe geklickt.                              | Das aktuelle Fenster füllt sich mit Einträgen welches alle abteilungsabhängigen Nutzerlisten als Liste anzeigt. | ✅        |
+| 24         | Abteilungsabhängige Nutzerliste exportieren: Es wird die für die aktuelle Kategorie “Export” geklickt.                                 | Eine neue JSON-Datei wird im Testordner erstellt. In dieser Datei sind die Einträge erhalten. | ✅        |
+
