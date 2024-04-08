@@ -4,9 +4,9 @@ Link zur Dokumentation [DOCS.md](docs/DOCS.md)
 
 ## Anforderungen
 
-- ![XAMPP](https://www.apachefriends.org/index.html)
+- [XAMPP](https://www.apachefriends.org/index.html)
 - Eine Datenbank: Beispieldatenbank befindet sich in `db_files` im Projekt
-- ![Visual Studio](https://visualstudio.microsoft.com/)
+- [Visual Studio](https://visualstudio.microsoft.com/)
 
 ## Einrichtung
 
