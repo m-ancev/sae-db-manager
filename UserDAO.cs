@@ -11,7 +11,7 @@ namespace sae_db_manager
 {
     internal class UserDAO
     {
-        //string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
+        // Default connection string: string connectionString = "datasource=localhost;port=3306;username=root;password=;database=user_management";
         public string ConnectionString { get; set; }
 
 
