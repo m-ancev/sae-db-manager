@@ -75,7 +75,43 @@ Verwendet wurde [Microsoft Planner](https://tasks.office.com/itSchuleStuttgart1.
 
 ### Netzplan
 
-< Tabellarische Auflistung der geplanten Netze als Vorlage für technische Umsetzung, d.h. Netze mit Subnetmaske, Gerätebezeichnungen für Router und Switche, Tabelle mit Verbindungen zwischen Backbone Geräten, also zum Beispiel   switch A – Port 4 auf Router B – Interface FA/0 >
+Legende:
+- Nummern wie folgt interpretieren:
+  - **2**.x.x    = Stockwerk **2** = S2
+  - 2.x.x(**1**) = Stockwerk **1** = S1
+- **Größe** und **t. Größe**:
+  - Größe       = genutzte Größe durch Switch-Limitierung (Portanzahl)
+  - theo. Größe = theoretische Größe des netztes **ohne Inbetrachtnahme** von **Switch-Limitierungen** oder **Maske**!
+- Erste / Letzte IP:
+  - Erste / Letzte IP beginnt **nach** der **fett geschriebenen Ziffer** der IP-Range!7
+  - Bsp:
+    - IP-Range:           192.**1**.0.0 - 192.**1**.0.7
+    - Erste/Letzte IP:    .0.1 / .0.6
+    - ausgeschrieben:     192.**1**.0.1 - 192.**1**.0.6
+
+---
+
+| Name       | Gerätname       | Netznummer | Genutzt | Größe | Maske | IP-Range                        | Erste IP | Letzte IP |
+|--          |--               |--          |--       |--     |--     |--                               |--        |--         |
+| Stockwerk1 | Switch 2.0.0(1) | 2.0.0(1)   | 5       | 8     | /29   | 192.**1**.0.0 - 192.**1**.4.255 | .0.1     | .4.254    |
+| S1 Row 1   | Switch 2.1.1(1) | 2.1.0(1)   | 24      | 32    | /27   | 192.1.**1**.0 - 192.1.**1**.31  | .1       | .30       |
+| S1 Row 2   | Switch 2.2.1(1) | 2.2.0(1)   | 24      | 32    | /27   | 192.1.**2**.0 - 192.1.**2**.31  | .1       | .30       |
+| S1 Row 3   | Switch 2.3.0(1) | 2.3.0(1)   | 4       | 8     | /29   | 192.1.**3**.0 - 192.1.**3**.7   | .1       | .6        |
+| S1 Wlan    | Switch 2.4.0(1) | 2.4.0(1)   | 7       | 16    | /28   | 192.1.**4**.0 - 192.1.**4**.15  | .1       | .14       |
+|            |                 |            |         |       |       |                                 |          |           |
+| Stockwerk2 | Switch 2.0.0    | 2.0.0      | 6       | 8     | /29   | 192.**2**.0.0 - 192.**2**.5.255 | .0.1     | .5.254    |
+| S2 Row 1   | Switch 2.1.1    | 2.1.0      | 24      | 32    | /27   | 192.2.**1**.0 - 192.2.**1**.31  | .1       | .30       |
+| S2 Row 2   | Switch 2.2.1    | 2.2.0      | 24      | 32    | /27   | 192.2.**2**.0 - 192.2.**2**.31  | .1       | .30       |
+| S2 Row 3   | Switch 2.3.0    | 2.3.0      | 4       | 8     | /29   | 192.2.**3**.0 - 192.2.**3**.7   | .1       | .6        |
+| S2 Wlan    | Switch 2.4.0    | 2.4.0      | 10      | 16    | /28   | 192.2.**4**.0 - 192.2.**4**.15  | .1       | .14       |
+| S2 Meeting | Switch 2.5.0    | 2.5.0      | 20      | 32    | /27   | 192.2.**5**.0 - 192.2.**5**.15  | .1       | .14       |
+|            |                 |            |         |       |       |                                 |          |           |
+| Sevrerraum | Switch 3        | 3          | 5       | 8     | /29   | 192.**3**.0.0 - 192.**3**.0.7   | .0.1     | .0.6      |
+|            |                 |            |         |       |       |                                 |          |           |
+| Router     | Router          | -          | 4       | 8     | /29   | **192**.0.0.0 - **192**.0.0.7   | .0.0.1   | .0.0.6    |
+|            |                 |            |         |       |       |                                 |          |           |
+
+---
 
 ### Demonstrationsprototyp Packet Tracer
 
