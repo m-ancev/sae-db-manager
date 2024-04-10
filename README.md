@@ -16,4 +16,10 @@ Link zur Dokumentation [DOCS.md](docs/DOCS.md)
 4. `Apache` und `MySQL` starten
 5. `PHPMyAdmin` öffnen
 6. Datenbank importieren
-7. Projekt starten
+7. WPF Applikation starten. Standard Credentials für die Datenbank sind:
+   - Username: root
+   - Kein Passwort
+   - Port: 3306 (Default XAMPP Port)
+   - Datenbankname: user_management
+
+(Diese Daten müssen nicht eingegeben werden, wenn unsere Konfiguration benutzt wird.)
