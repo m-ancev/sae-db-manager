@@ -1,10 +1,14 @@
 # Projekt Dokumentation Umzug - Projektmanagement
 
-| Gruppenmitglieder  |
+| Gruppenmitglieder  | 
 |--------------------|
 | Sebastian Büttner  |
 | Robin Kaiser       |
 | Marko Ancev        |
+
+# Zeitaufwand
+- 2-3 Wochen
+- Kosten pro Person 400€ pro Tag
 
 ## Teil 1: Planung Netzwerk
 
